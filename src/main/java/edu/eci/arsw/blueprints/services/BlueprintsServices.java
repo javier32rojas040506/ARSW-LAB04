@@ -10,6 +10,8 @@ import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
+
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -51,7 +53,7 @@ public class BlueprintsServices {
         Blueprint blueprint;
         try {
              blueprint = bpp.getBlueprint(author, name);
-             bpf.filterPoints(blueprint);
+             blueprint =  bpf.filterPoints(blueprint);
         }catch (Exception e){
             throw new UnsupportedOperationException("Error with the operation on services.");
         }
@@ -66,12 +68,17 @@ public class BlueprintsServices {
      */
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException{
         Set<Blueprint> blueprints;
+        Set<Blueprint> blueprintsFiltered = new HashSet<>();
         try {
             blueprints = bpp.getBlueprintsByAuthor(author);
+            for(Blueprint bp: blueprints){
+                bp = bpf.filterPoints(bp);
+                blueprintsFiltered.add(bp);
+            }
         }catch (Exception e){
             throw new UnsupportedOperationException("Error with the operation on services.");
         }
-        return blueprints;
+        return blueprintsFiltered;
     }
     
 }

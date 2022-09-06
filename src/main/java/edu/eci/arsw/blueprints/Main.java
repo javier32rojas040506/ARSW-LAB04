@@ -26,7 +26,7 @@ public class Main {
                 System.out.println(b);
             }
             System.out.println("------Normal get-----");
-            System.out.println(bps.getBlueprint("Pedro", "casa#38"));
+            System.out.println(bps.getBlueprint("Juan", "casa#12"));
         } catch (BlueprintNotFoundException e) {
             throw new RuntimeException(e);
         }
