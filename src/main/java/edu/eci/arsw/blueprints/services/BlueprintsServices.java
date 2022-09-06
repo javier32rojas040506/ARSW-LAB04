@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.blueprints.services;
 
+import edu.eci.arsw.blueprints.filters.Filter;
 import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
@@ -24,6 +25,8 @@ public class BlueprintsServices {
    
     @Autowired
     BlueprintsPersistence bpp=null;
+    @Autowired
+    Filter bpf;
     
     public void addNewBlueprint(Blueprint bp){
         try {
@@ -48,6 +51,7 @@ public class BlueprintsServices {
         Blueprint blueprint;
         try {
              blueprint = bpp.getBlueprint(author, name);
+             bpf.filterPoints(blueprint);
         }catch (Exception e){
             throw new UnsupportedOperationException("Error with the operation on services.");
         }
