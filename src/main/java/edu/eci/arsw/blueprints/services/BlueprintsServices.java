@@ -26,7 +26,11 @@ public class BlueprintsServices {
     BlueprintsPersistence bpp=null;
     
     public void addNewBlueprint(Blueprint bp){
-        
+        try {
+            bpp.saveBlueprint(bp);
+        }catch (Exception e){
+            throw new UnsupportedOperationException("Error with the operation on services.");
+        }
     }
     
     public Set<Blueprint> getAllBlueprints(){
@@ -41,7 +45,13 @@ public class BlueprintsServices {
      * @throws BlueprintNotFoundException if there is no such blueprint
      */
     public Blueprint getBlueprint(String author,String name) throws BlueprintNotFoundException{
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Blueprint blueprint;
+        try {
+             blueprint = bpp.getBlueprint(author, name);
+        }catch (Exception e){
+            throw new UnsupportedOperationException("Error with the operation on services.");
+        }
+        return blueprint;
     }
     
     /**
@@ -51,7 +61,13 @@ public class BlueprintsServices {
      * @throws BlueprintNotFoundException if the given author doesn't exist
      */
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException{
-        throw new UnsupportedOperationException("Not supported yet."); 
+        Set<Blueprint> blueprints;
+        try {
+            blueprints = bpp.getBlueprintsByAuthor(author);
+        }catch (Exception e){
+            throw new UnsupportedOperationException("Error with the operation on services.");
+        }
+        return blueprints;
     }
     
 }
