@@ -68,6 +68,7 @@ public class RedundancyFilterTest extends TestCase {
         assertEquals("Points filtered by Redundancy", bp.getPoints().toString(), correctAnswer.toString());
 
     }
+    @Test
     public void testFilterPointsEdges() throws BlueprintPersistenceException {
         InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();
         Filter bpf = new RedundancyFilter();
@@ -85,6 +86,7 @@ public class RedundancyFilterTest extends TestCase {
         assertEquals("Points filtered by Redundancy", bp.getPoints().toString(), correctAnswer.toString());
 
     }
+    @Test
     public void testFilterPointsMiddle() throws BlueprintPersistenceException {
         InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();
         Filter bpf = new RedundancyFilter();
